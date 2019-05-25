@@ -19,7 +19,34 @@ var Dollar = /** @class */ (function () {
 var coin = new Dollar();
 var value = coin.Value;
 /** modeling a real-world obejct by creating a class is called "abstracton"  */ 
+var SodaCategory = /** @class */ (function () {
+    function SodaCategory() {
+        this.name = "Soda";
+    }
+    SodaCategory.prototype.getImageUrl = function () {
+        return "img/SodaCan.png";
+    };
+    return SodaCategory;
+}());
+/// <reference path="productCategory.ts" />
+var CocaCola = /** @class */ (function () {
+    function CocaCola() {
+        this.name = "Coca-Cola";
+        this.price = 2.30;
+        this.category = new SodaCategory();
+    }
+    return CocaCola;
+}());
 /// <reference path="./coin.ts" />
+/// <reference path="./product.ts" />
+var Cell = /** @class */ (function () {
+    function Cell(product) {
+        this.product = product;
+        this.stock = ko.observable(3);
+        this.sold = ko.observable(false);
+    }
+    return Cell;
+}());
 var VendingMachine = /** @class */ (function () {
     function VendingMachine() {
         var _this = this;
