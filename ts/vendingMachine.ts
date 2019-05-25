@@ -30,7 +30,7 @@ class VendingMachine {
             this.cells.push(new Cell(product));
         };
     }
-    select = (cell: Cell): void => {
+    select = (cell:Cell): void => {
        cell.sold(false)
        this.selectedCell(cell)
     }
