@@ -5,7 +5,7 @@ class Dollar {
         return this.value;
     }
     getImageUrl (): string {
-        return "img/coin.png";
+        return "img/dollar.jpg";
     }
 
 }

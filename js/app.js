@@ -12,7 +12,7 @@ var Dollar = /** @class */ (function () {
         configurable: true
     });
     Dollar.prototype.getImageUrl = function () {
-        return "img/coin.png";
+        return "img/dollar.jpg";
     };
     return Dollar;
 }());
