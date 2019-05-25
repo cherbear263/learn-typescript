@@ -2,6 +2,7 @@
 
 class VendingMachine {
     private paid = ko.observable(0);
+    acceptedCoins: Dollar[] = [new Dollar()]
     acceptCoin = (coin: Dollar): void  => {
         let oldTotal = this.paid()
         this.paid(oldTotal + coin.Value)
