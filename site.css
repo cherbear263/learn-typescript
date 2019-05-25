@@ -39,6 +39,9 @@ body {
 .coin {
     max-width: 35px;
 }
+.can {
+    max-width: 40px;
+}
 
 @keyframes rotate {
     33% { transform: rotate(-15deg); }

@@ -8,21 +8,41 @@
     </head>
     <body>
         <div class="container">
-            <h1>Vending Machine Siumulation</h1>
+            <h1>Vending Machine Simulation</h1>
         <div class="row">
-            <div class = "col-md-8">
-
+            <div class = "col-md-8" data-bind="foreach: cells">
+                <div class="col-md-4 cell" data-bind="click: $parent.select,
+                css: {selected: $parent.selectedCell().product == $data.product,
+                    sold: sold}">
+                    <div class="col-md-6 image">
+                            <img class='can' data-bind="attr: { src: product.category.getImageUrl(), alt: product.category.name }"/>
+                    </div>
+                    <div class="col-md-6 productInfo">
+                        <div data-bind="text: product.name"></div>
+                        <h4 data-bind="text: stock"></h4>
+                        <h3 data-bind="text: '$ ' + product.price"></h3>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4">
                 <h4>
                     Paid: $
                     <span id="total" data-bind = "text: paid"></span>
                 </h4>
-                <div data-bind="foreach: acceptedCoins">
-                    <img class="coin" data-bind="attr: { src: getImageUrl(),
+               <div data-bind="foreach: acceptedCoins">
+                    <img  class="coin" data-bind="attr: { src: getImageUrl(),
                         alt: value }, click: $parent.acceptCoin"/>
-
+            
                 </div>
+                <h3 data-bind="with: selectedCell">
+                    <div data-bind="text: product.name"></div>
+                    <div>
+                        $
+                        <span data-bind="text: product.price"></span>
+                    </div>
+                </h3>
+                <button class="btn btn-primary payButton"
+                data-bind="enable: canPay, click: pay">Pay</button>
             </div>
         </div>
         </div>
