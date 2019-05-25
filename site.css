@@ -36,6 +36,9 @@ body {
     animation-name: drop;
     animation-duration: 2s;
 }
+.coin {
+    max-width: 35px;
+}
 
 @keyframes rotate {
     33% { transform: rotate(-15deg); }

@@ -24,6 +24,7 @@ var VendingMachine = /** @class */ (function () {
     function VendingMachine() {
         var _this = this;
         this.paid = ko.observable(0);
+        this.acceptedCoins = [new Dollar()];
         this.acceptCoin = function (coin) {
             var oldTotal = _this.paid();
             _this.paid(oldTotal + coin.Value);
