@@ -19,15 +19,14 @@ var Dollar = /** @class */ (function () {
 var coin = new Dollar();
 var value = coin.Value;
 /** modeling a real-world obejct by creating a class is called "abstracton"  */ 
-/// <reference path="coin.ts" />
+/// <reference path="./coin.ts" />
 var VendingMachine = /** @class */ (function () {
     function VendingMachine() {
         var _this = this;
-        this.paid = 0;
+        this.paid = ko.observable(0);
         this.acceptCoin = function (coin) {
-            _this.paid = _this.paid + coin.Value;
-            var element = document.getElementById("total");
-            element.innerHTML = _this.paid.toString();
+            var oldTotal = _this.paid();
+            _this.paid(oldTotal + coin.Value);
         };
         /** "this" refers to the class, because this is an arrow function.
          * when a coin is accepted, the value of the coin is added to the "paid" count
@@ -37,4 +36,5 @@ var VendingMachine = /** @class */ (function () {
 }());
 /// <reference path="vendingMachine.ts" />
 var machine = new VendingMachine();
+ko.applyBindings(machine);
 //# sourceMappingURL=app.js.map

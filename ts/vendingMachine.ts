@@ -1,11 +1,10 @@
-/// <reference path="coin.ts" />
+/// <reference path="./coin.ts" />
 
 class VendingMachine {
-    private paid: number = 0;
+    private paid = ko.observable(0);
     acceptCoin = (coin: Dollar): void  => {
-        this.paid = this.paid + coin.Value
-        var element = document.getElementById("total")
-        element.innerHTML = this.paid.toString()
+        let oldTotal = this.paid()
+        this.paid(oldTotal + coin.Value)
         
     }
     /** "this" refers to the class, because this is an arrow function.
