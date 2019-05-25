@@ -1,33 +1,134 @@
 "use strict";
-var Dollar = /** @class */ (function () {
-    function Dollar() {
-        this.value = 1.00;
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Coin = /** @class */ (function () {
+    function Coin(value) {
+        this.value = value;
+        this.value = value;
     }
-    Object.defineProperty(Dollar.prototype, "Value", {
-        //this is a function that uses a "getter" to return the number inside the private field "value" 
-        get: function () {
-            return this.value;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    return Coin;
+}());
+var Dollar = /** @class */ (function (_super) {
+    __extends(Dollar, _super);
+    function Dollar() {
+        return _super.call(this, 1.00) || this;
+    }
     Dollar.prototype.getImageUrl = function () {
         return "img/dollar.jpg";
     };
+    ;
     return Dollar;
+}(Coin));
+var tenp = /** @class */ (function (_super) {
+    __extends(tenp, _super);
+    function tenp() {
+        return _super.call(this, 0.10) || this;
+    }
+    tenp.prototype.getImageUrl = function () {
+        return "img/10p.jpg";
+    };
+    ;
+    return tenp;
+}(Coin));
+var fiftyp = /** @class */ (function (_super) {
+    __extends(fiftyp, _super);
+    function fiftyp() {
+        return _super.call(this, 0.50) || this;
+    }
+    fiftyp.prototype.getImageUrl = function () {
+        return "img/50p.jpeg";
+    };
+    ;
+    return fiftyp;
+}(Coin));
+var twentyp = /** @class */ (function (_super) {
+    __extends(twentyp, _super);
+    function twentyp() {
+        return _super.call(this, 0.20) || this;
+    }
+    twentyp.prototype.getImageUrl = function () {
+        return "img/20p.jpeg";
+    };
+    ;
+    return twentyp;
+}(Coin));
+var ProductCategory = /** @class */ (function () {
+    function ProductCategory() {
+        this.imgPath = "img/";
+    }
+    return ProductCategory;
 }());
-var coin = new Dollar();
-var value = coin.Value;
-/** modeling a real-world obejct by creating a class is called "abstracton"  */ 
-var SodaCategory = /** @class */ (function () {
+var SodaCategory = /** @class */ (function (_super) {
+    __extends(SodaCategory, _super);
     function SodaCategory() {
-        this.name = "Soda";
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = "Soda";
+        return _this;
     }
     SodaCategory.prototype.getImageUrl = function () {
-        return "img/SodaCan.png";
+        return this.imgPath + "SodaCan.png";
     };
     return SodaCategory;
-}());
+}(ProductCategory));
+var LollyCategory = /** @class */ (function (_super) {
+    __extends(LollyCategory, _super);
+    function LollyCategory() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = "Lolly";
+        return _this;
+    }
+    LollyCategory.prototype.getImageUrl = function () {
+        return this.imgPath + "lolly.png";
+    };
+    return LollyCategory;
+}(ProductCategory));
+var ChipCategory = /** @class */ (function (_super) {
+    __extends(ChipCategory, _super);
+    function ChipCategory() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = "Chips";
+        return _this;
+    }
+    ChipCategory.prototype.getImageUrl = function () {
+        return this.imgPath + "chips.jpeg";
+    };
+    return ChipCategory;
+}(ProductCategory));
+var ChocCategory = /** @class */ (function (_super) {
+    __extends(ChocCategory, _super);
+    function ChocCategory() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = "Chocolate";
+        return _this;
+    }
+    ChocCategory.prototype.getImageUrl = function () {
+        return this.imgPath + "chocbar.png";
+    };
+    return ChocCategory;
+}(ProductCategory));
+var GumCategory = /** @class */ (function (_super) {
+    __extends(GumCategory, _super);
+    function GumCategory() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = "Chewing Gum";
+        return _this;
+    }
+    GumCategory.prototype.getImageUrl = function () {
+        return this.imgPath + "gum.png";
+    };
+    return GumCategory;
+}(ProductCategory));
 /// <reference path="productCategory.ts" />
 var CocaCola = /** @class */ (function () {
     function CocaCola() {
@@ -67,10 +168,11 @@ var Cell = /** @class */ (function () {
 var VendingMachine = /** @class */ (function () {
     function VendingMachine() {
         var _this = this;
+        //private _size: VendingMachineSize
         this.paid = ko.observable(0);
         this.selectedCell = ko.observable(new Cell(new CocaCola()));
         this.cells = ko.observableArray([]);
-        this.acceptedCoins = [new Dollar()];
+        this.acceptedCoins = [new tenp(), new Dollar(), new fiftyp(), new twentyp()];
         this.canPay = ko.pureComputed(function () { return _this.paid() - _this.selectedCell().product.price >= 0; });
         this.select = function (cell) {
             cell.sold(false);
